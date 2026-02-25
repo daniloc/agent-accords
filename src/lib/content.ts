@@ -2,6 +2,7 @@ import type { Component } from 'svelte';
 
 interface MdMetadata {
 	name?: string;
+	title?: string;
 	description?: string;
 	presentation?: {
 		order?: string[];
@@ -17,6 +18,7 @@ interface MdModule {
 export interface ContentItem {
 	slug: string;
 	name: string;
+	title: string;
 	description: string;
 	type: 'standalone' | 'skill';
 	references: { slug: string; title: string }[];
@@ -50,11 +52,6 @@ const rawModules = import.meta.glob<string>('/contents/**/*.md', {
 
 function slugFromPath(path: string): string {
 	return path.split('/').pop()!.replace('.md', '');
-}
-
-function parentDir(path: string): string {
-	const parts = path.split('/');
-	return parts[parts.length - 2];
 }
 
 function isSkill(path: string): boolean {
@@ -109,19 +106,20 @@ function buildIndex(): Map<string, { path: string; refPaths: Map<string, string>
 
 const index = buildIndex();
 
-function buildReferences(
+const titleFromSlug = (s: string) => s.replace(/-/g, ' ').replace(/^\w/, (c) => c.toUpperCase());
+
+async function buildReferences(
 	refPaths: Map<string, string>,
 	order?: string[]
-): { slug: string; title: string }[] {
-	const titleFromSlug = (s: string) => s.replace(/-/g, ' ').replace(/^\w/, (c) => c.toUpperCase());
+): Promise<{ slug: string; title: string }[]> {
+	const slugs = order ? order.filter((s) => refPaths.has(s)) : [...refPaths.keys()];
 
-	if (order) {
-		return order
-			.filter((s) => refPaths.has(s))
-			.map((s) => ({ slug: s, title: titleFromSlug(s) }));
-	}
-
-	return [...refPaths.keys()].map((s) => ({ slug: s, title: titleFromSlug(s) }));
+	return Promise.all(
+		slugs.map(async (s) => {
+			const mod = await modules[refPaths.get(s)!]();
+			return { slug: s, title: mod.metadata?.title ?? titleFromSlug(s) };
+		})
+	);
 }
 
 export async function getAllItems(): Promise<ContentItem[]> {
@@ -136,9 +134,10 @@ export async function getAllItems(): Promise<ContentItem[]> {
 		items.push({
 			slug,
 			name: mod.metadata?.name ?? slug,
+			title: mod.metadata?.title ?? mod.metadata?.name ?? slug,
 			description: mod.metadata?.description ?? '',
 			type: isSkillItem ? 'skill' : 'standalone',
-			references: buildReferences(entry.refPaths, mod.metadata?.presentation?.order)
+			references: await buildReferences(entry.refPaths, mod.metadata?.presentation?.order)
 		});
 	}
 
@@ -155,9 +154,10 @@ export async function getItem(slug: string): Promise<ResolvedItem | undefined> {
 	return {
 		slug,
 		name: mod.metadata?.name ?? slug,
+		title: mod.metadata?.title ?? mod.metadata?.name ?? slug,
 		description: mod.metadata?.description ?? '',
 		type: isSkillItem ? 'skill' : 'standalone',
-		references: buildReferences(entry.refPaths, mod.metadata?.presentation?.order),
+		references: await buildReferences(entry.refPaths, mod.metadata?.presentation?.order),
 		component: mod.default
 	};
 }
@@ -175,16 +175,14 @@ export async function getReference(
 	const mod = await modules[refPath]();
 	const skillMod = await modules[entry.path]();
 
-	const titleFromSlug = (s: string) =>
-		s.replace(/-/g, ' ').replace(/^\w/, (c) => c.toUpperCase());
-	const refs = buildReferences(entry.refPaths, skillMod.metadata?.presentation?.order);
+	const refs = await buildReferences(entry.refPaths, skillMod.metadata?.presentation?.order);
 	const currentIndex = refs.findIndex((r) => r.slug === refSlug);
-	const parentName = skillMod.metadata?.name ?? skill;
+	const parentTitle = skillMod.metadata?.title ?? skillMod.metadata?.name ?? skill;
 
 	const prev: NavLink =
 		currentIndex > 0
 			? { href: `/${skill}/${refs[currentIndex - 1].slug}`, title: refs[currentIndex - 1].title }
-			: { href: `/${skill}`, title: parentName };
+			: { href: `/${skill}`, title: parentTitle };
 
 	const next: NavLink | null =
 		currentIndex < refs.length - 1
@@ -193,10 +191,10 @@ export async function getReference(
 
 	return {
 		slug: refSlug,
-		title: titleFromSlug(refSlug),
+		title: mod.metadata?.title ?? titleFromSlug(refSlug),
 		component: mod.default,
 		parentSlug: skill,
-		parentName,
+		parentName: parentTitle,
 		prev,
 		next
 	};

@@ -1,4 +1,6 @@
-# Data is destiny
+---
+title: Data is destiny
+---
 
 Structuring code is the obvious part of making a program, but *structuring data* might be even more consequential.
 

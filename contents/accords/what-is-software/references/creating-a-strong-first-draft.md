@@ -1,4 +1,6 @@
-# Creating a strong first draft
+---
+title: Creating a strong first draft
+---
 
 Writing software is a gamble.
 

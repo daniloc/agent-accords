@@ -4,15 +4,11 @@
 
 <h1>Agent accords</h1>
 
-<nav>
-	<ul>
-		{#each data.items as item}
-			<li>
-				<a href="/{item.slug}">{item.name}</a>
-				{#if item.description}
-					<p>{item.description}</p>
-				{/if}
-			</li>
-		{/each}
-	</ul>
-</nav>
+{#each data.items as item}
+	<a class="card nav-link" href="/{item.slug}">
+		<strong>{item.title}</strong>
+		{#if item.description}
+			<p>{item.description}</p>
+		{/if}
+	</a>
+{/each}

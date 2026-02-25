@@ -1,4 +1,6 @@
-# Structuring code
+---
+title: Structuring code
+---
 
 Software is a living artifact. It is never completed, only abandoned. There will always be further desires, goals and refinements to address.
 

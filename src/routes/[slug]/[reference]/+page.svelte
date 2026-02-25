@@ -1,17 +1,17 @@
 <script lang="ts">
 	let { data } = $props();
-	const { component: Content } = data;
+	let Content = $derived(data.component);
 </script>
 
-<article>
+<h1>{data.title}</h1>
+
+<article class="card">
 	<Content />
 </article>
 
-<nav>
-	<a href={data.prev.href}>&larr; {data.prev.title}</a>
-	{#if data.next}
-		<a href={data.next.href}>{data.next.title} &rarr;</a>
-	{:else}
-		<a href="/{data.parentSlug}">{data.parentName} &larr;</a>
-	{/if}
-</nav>
+{#if data.next}
+	<a class="card nav-link next" href={data.next.href}>{data.next.title} &rarr;</a>
+{:else}
+	<a class="card nav-link" href="/{data.parentSlug}">{data.parentName} &larr;</a>
+{/if}
+<a class="card nav-link" href={data.prev.href}>&larr; {data.prev.title}</a>

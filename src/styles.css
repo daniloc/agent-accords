@@ -1,0 +1,53 @@
+:root {
+	--content-width: 70ch;
+	--spacing-page: 1rem;
+	--spacing-block: 1.5rem;
+	--color-bg-start: #2c5aa0;
+	--color-bg-end: #0a1628;
+	--color-surface: #fff;
+	--color-text: #1a1a2e;
+	--color-text-light: #ffffffdd;
+	--radius: 0.5rem;
+	--font-size-nav: 1.2rem;
+}
+
+body {
+	margin: 0;
+	min-height: 100vh;
+	background: linear-gradient(to bottom, var(--color-bg-start), var(--color-bg-end));
+	color: var(--color-text-light);
+	font-family: system-ui, sans-serif;
+}
+
+.card {
+	background: var(--color-surface);
+	color: var(--color-text);
+	border-radius: var(--radius);
+	padding: var(--spacing-block);
+	margin-block-end: var(--spacing-block);
+}
+
+.card > :first-child {
+	margin-block-start: 0;
+}
+
+main > h1 {
+	color: var(--color-text-light);
+}
+
+a.nav-link {
+	display: block;
+	text-decoration: none;
+	color: var(--color-text);
+	font-size: var(--font-size-nav);
+	font-weight: 600;
+}
+
+a.nav-link p {
+	font-weight: normal;
+	font-size: 1rem;
+}
+
+a.nav-link.next {
+	text-align: right;
+}

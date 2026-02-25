@@ -7,7 +7,7 @@ export async function load({ params }) {
 
 	return {
 		component: item.component,
-		name: item.name,
+		title: item.title,
 		description: item.description,
 		type: item.type,
 		slug: item.slug,
