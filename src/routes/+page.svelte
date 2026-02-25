@@ -1,2 +1,18 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://svelte.dev/docs/kit">svelte.dev/docs/kit</a> to read the documentation</p>
+<script lang="ts">
+	let { data } = $props();
+</script>
+
+<h1>Agent accords</h1>
+
+<nav>
+	<ul>
+		{#each data.items as item}
+			<li>
+				<a href="/{item.slug}">{item.name}</a>
+				{#if item.description}
+					<p>{item.description}</p>
+				{/if}
+			</li>
+		{/each}
+	</ul>
+</nav>

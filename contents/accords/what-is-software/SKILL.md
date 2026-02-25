@@ -1,6 +1,11 @@
 ---
 name: what-is-software
 description: An accord for building software with AI assistance. Establishes shared vocabulary and principles for structuring code, structuring data, and managing the strategic risks of going from zero to one. Use when building projects to maintain strong foundations.
+presentation:
+  order:
+    - structuring-code
+    - data-is-destiny
+    - creating-a-strong-first-draft
 ---
 
 # What is software?

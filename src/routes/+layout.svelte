@@ -8,4 +8,12 @@
 	<link rel="icon" href={favicon} />
 </svelte:head>
 
-{@render children()}
+<header>
+	<nav>
+		<a href="/">Agent accords</a>
+	</nav>
+</header>
+
+<main>
+	{@render children()}
+</main>
