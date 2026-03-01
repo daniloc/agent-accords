@@ -9,7 +9,7 @@ presentation:
     - creating-a-strong-first-draft
 ---
 
-This is an *accord*: a shared document that gives humans and LLM agents common language and premises for achieving goals together. Learn more about accords.
+This is an *accord*: an orientation document that gives humans and LLM agents common language and premises for achieving goals together.
 
 Software has saturated the world around us for more than fifty years. But like a fish doesn't know it's in water, we don't always have the mechanics of software close at hand.
 
@@ -17,7 +17,7 @@ This accord covers three domains essential to building software.
 
 ## Structuring code
 
-Software is never completed, only abandoned. Structure exists to ease maintenance, refinement, and understanding. The key ideas:
+Software is never completed, only abandoned. Structure must be planned carefully to ease maintenance, refinement, and understanding. The key ideas:
 
 - **Separation of concerns**: different responsibilities belong in different containers.
 - **Encapsulation**: conceal a component's details inside a boundary.
@@ -26,7 +26,7 @@ Software is never completed, only abandoned. Structure exists to ease maintenanc
 - **Dependencies**: external components are relationships, not free building blocks. Evaluate what you're inviting inside.
 - **Version control**: git captures your program's shape over time. Commit at every validated step.
 
-See [Structuring code](/what-is-software/structuring-code).
+See [Structuring code](references/structuring-code.md).
 
 ## Data is destiny
 
@@ -37,7 +37,7 @@ Structuring data is at least as consequential as structuring code.
 
 Store truth once, then compute its consequences.
 
-See [Data is destiny](/what-is-software/data-is-destiny).
+See [Data is destiny](references/data-is-destiny.md).
 
 ## Creating a strong first draft
 
@@ -49,4 +49,4 @@ Writing software is a gamble — an investment of time against uncertain returns
 4. **Iterate**: refine repeatedly, commit what works, discard what doesn't.
 5. **Get your work in front of real people**. The real test is whether it solves a problem.
 
-See [Creating a strong first draft](/what-is-software/creating-a-strong-first-draft).
+See [Creating a strong first draft](references/creating-a-strong-first-draft.md).

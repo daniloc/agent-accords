@@ -10,7 +10,7 @@ Thus, building software is the art and skill of structuring projects to ease mai
 
 When code addresses many different problems in a single file, it makes understanding and changes more expensive.
 
-Let's imagine a simple program: it fetches from the internet and draws it on the screen.
+Let's imagine a simple program: it fetches a number from the internet and draws it on the screen.
 
 Ideally, this program's project code is structured to separate different responsibilities into distinct files. Concretely, this can mean the file for drawing numbers is separate from code for connecting to the network, while code for interpreting the responses from the network lives in a third file. At a high level, this notion is called *separation of concerns*.
 
