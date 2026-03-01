@@ -200,6 +200,15 @@ export async function getReference(
 	};
 }
 
+function stripPresentationFrontmatter(raw: string): string {
+	const fmMatch = raw.match(/^---\n([\s\S]*?)\n---/);
+	if (!fmMatch) return raw;
+
+	const frontmatter = fmMatch[1].replace(/^presentation:.*(?:\n[ \t]+.*)*/m, '').trim();
+	const body = raw.slice(fmMatch[0].length);
+	return `---\n${frontmatter}\n---${body}`;
+}
+
 export async function getRawSkill(slug: string): Promise<string | undefined> {
 	const entry = index.get(slug);
 	if (!entry?.path || !entry.path.endsWith('/SKILL.md')) return undefined;
@@ -207,5 +216,6 @@ export async function getRawSkill(slug: string): Promise<string | undefined> {
 	const resolver = rawModules[entry.path];
 	if (!resolver) return undefined;
 
-	return await resolver();
+	const raw = await resolver();
+	return stripPresentationFrontmatter(raw);
 }

@@ -1,0 +1,18 @@
+{
+	"name": "agent-accords",
+	"owner": {
+		"name": "Agent Accords"
+	},
+	"metadata": {
+		"description": "Shared language and premises for humans and LLM agents building software together.",
+		"pluginRoot": "./contents/accords"
+	},
+	"plugins": [
+		{
+			"name": "what-is-software",
+			"source": "./what-is-software",
+			"description": "An accord explaining what software is and how it is made. Covers structuring code, data modeling and state, and creating strong first drafts through prototyping and iteration.",
+			"version": "1.0.0"
+		}
+	]
+}
