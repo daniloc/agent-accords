@@ -4,11 +4,9 @@ This is an Agent Skill — a portable knowledge package for LLM coding agents.
 
 ## Quick start
 
-Copy this folder into your project's \`.claude/skills/\` directory:
+Copy this folder into your project's \`.claude/skills/\` directory.
 
-    cp -r <skill-name> /path/to/your/project/.claude/skills/
-
-The agent will automatically discover and use the skill based on its description.
+The agent will automatically discover and use the skill based on its description. You can ask your agent to help with this.
 
 ## What's inside
 
