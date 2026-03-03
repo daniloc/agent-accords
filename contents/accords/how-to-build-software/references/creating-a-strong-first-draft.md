@@ -1,5 +1,8 @@
 ---
 title: Creating a strong first draft
+license: CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/)
+metadata:
+  author: Danilo Campos
 ---
 
 Writing software is a gamble.

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Saira:ital,wght@0,100..900;1,100..900&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Saira:ital,wght@0,100..900;1,100..900&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap');
 
 :root {
 	--content-width: 70ch;
@@ -59,6 +59,19 @@ body {
 	text-decoration-color: var(--color-bg-start);
 }
 
+code {
+	font-family: 'IBM Plex Mono', monospace;
+	font-size: 0.9em;
+	color: #9b2d6b;
+	background: #f3edf0;
+	padding: 0.1em 0.3em;
+	border-radius: 0.25em;
+}
+
+pre code {
+	font-size: 0.85em;
+}
+
 h1, h2, h3, h4, h5, h6 {
 	font-family: 'Saira', sans-serif;
 	font-weight: 400;
@@ -69,7 +82,7 @@ h1, h2, h3, h4, h5, h6 {
 	margin-block-start: 2rem;
 }
 
-h1 + *, h2 + *, h3 + *, h4 + *, h5 + *, h6 + * {
+.card :is(h1, h2, h3, h4, h5, h6) + * {
 	margin-block-start: 0;
 }
 
@@ -89,15 +102,41 @@ a.nav-link {
 	color: var(--color-text);
 	font-family: 'Saira', sans-serif;
 	font-size: var(--font-size-nav);
-	font-weight: 400;
+	font-weight: 500;
 }
 
 a.nav-link p {
 	font-family: 'Source Serif 4', serif;
 	font-weight: normal;
 	font-size: 1rem;
+	margin-block-start: 0.2rem;
 }
 
 a.nav-link.next {
 	text-align: right;
+}
+
+.download-link {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	gap: 0.3rem;
+	font-family: 'Saira', sans-serif;
+	font-size: 0.85rem;
+	color: var(--color-text-light);
+	opacity: 0.7;
+	text-decoration: none;
+	margin-block-start: -0.75rem;
+	margin-block-end: var(--spacing-block);
+	transition: opacity 0.2s;
+}
+
+.download-link:hover {
+	opacity: 1;
+}
+
+.download-link.detail {
+	justify-content: flex-start;
+	margin-block-start: 0;
+	margin-block-end: 0.5rem;
 }

@@ -1,5 +1,8 @@
 ---
 title: Data is destiny
+license: CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/)
+metadata:
+  author: Danilo Campos
 ---
 
 Structuring code is the obvious part of making a program, but *structuring data* might be even more consequential.

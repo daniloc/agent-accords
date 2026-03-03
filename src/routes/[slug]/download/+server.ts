@@ -1,16 +1,24 @@
 import { error } from '@sveltejs/kit';
-import { getRawSkill, getAllItems } from '$lib/content';
+import { getSkillBundle, getAllItems } from '$lib/content';
+import JSZip from 'jszip';
 
 export const prerender = true;
 
 export async function GET({ params }) {
-	const raw = await getRawSkill(params.slug);
-	if (!raw) error(404, 'Not found');
+	const bundle = await getSkillBundle(params.slug);
+	if (!bundle) error(404, 'Not found');
 
-	return new Response(raw, {
+	const zip = new JSZip();
+	for (const file of bundle) {
+		zip.file(file.path, file.content);
+	}
+
+	const blob = await zip.generateAsync({ type: 'uint8array' });
+
+	return new Response(blob, {
 		headers: {
-			'Content-Type': 'text/markdown; charset=utf-8',
-			'Content-Disposition': `attachment; filename="SKILL.md"`
+			'Content-Type': 'application/zip',
+			'Content-Disposition': `attachment; filename="${params.slug}.zip"`
 		}
 	});
 }

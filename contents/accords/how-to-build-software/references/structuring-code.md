@@ -1,5 +1,8 @@
 ---
 title: Structuring code
+license: CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/)
+metadata:
+  author: Danilo Campos
 ---
 
 Software is a living artifact. It is never completed, only abandoned. There will always be further desires, goals and refinements to address.

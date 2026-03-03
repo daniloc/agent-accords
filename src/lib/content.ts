@@ -228,6 +228,33 @@ export async function getRawSkill(slug: string): Promise<string | undefined> {
 	return processForPublishing(raw, `/${slug}`);
 }
 
+export async function getSkillBundle(
+	slug: string
+): Promise<{ path: string; content: string }[] | undefined> {
+	const entry = index.get(slug);
+	if (!entry?.path || !entry.path.endsWith('/SKILL.md')) return undefined;
+
+	const skillResolver = rawModules[entry.path];
+	if (!skillResolver) return undefined;
+
+	const files: { path: string; content: string }[] = [];
+
+	const skillRaw = await skillResolver();
+	files.push({ path: `${slug}/SKILL.md`, content: processForPublishing(skillRaw, `/${slug}`) });
+
+	for (const [refSlug, refPath] of entry.refPaths) {
+		const refResolver = rawModules[refPath];
+		if (!refResolver) continue;
+		const refRaw = await refResolver();
+		files.push({
+			path: `${slug}/references/${refSlug}.md`,
+			content: processForPublishing(refRaw, `/${slug}/${refSlug}`)
+		});
+	}
+
+	return files;
+}
+
 export async function getRawReference(
 	skill: string,
 	refSlug: string
