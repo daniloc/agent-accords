@@ -1,6 +1,30 @@
 <script lang="ts">
+	import FolderIcon from '$lib/icons/FolderIcon.svelte';
+	import CopyIcon from '$lib/icons/CopyIcon.svelte';
+
 	let { data } = $props();
+
+	const command = '/plugin marketplace add daniloc/agent-accords';
+	let copiedId = $state('');
+
+	async function copy(text: string, id: string) {
+		await navigator.clipboard.writeText(text);
+		copiedId = id;
+		setTimeout(() => (copiedId = ''), 2000);
+	}
 </script>
+
+<p class="install-hint">
+	Install in Claude Code:
+	<button class="copy-command" onclick={() => copy(command, 'marketplace')}>
+		<code>{command}</code>
+		{#if copiedId === 'marketplace'}
+			<span class="copy-feedback">Copied!</span>
+		{:else}
+			<CopyIcon />
+		{/if}
+	</button>
+</p>
 
 {#each data.items as item}
 	<a class="card nav-link" href="/{item.slug}">
@@ -10,6 +34,14 @@
 		{/if}
 	</a>
 	{#if item.type === 'skill'}
-		<a class="download-link" href="/{item.slug}/download" data-sveltekit-reload><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g fill="none"><path fill="currentColor" d="M3 17V5h7l2 2h9v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2" opacity="0.16"/><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 17V5h7l2 2h9v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2"/></g></svg> Download in Agent Skill format (.zip)</a>
+		<a class="download-link" href="/{item.slug}/download" data-sveltekit-reload><FolderIcon /> Download in Agent Skill format (.zip)</a>
+		<button class="download-link copy-command" onclick={() => copy(`/plugin install ${item.slug}@agent-accords`, item.slug)}>
+			{#if copiedId === item.slug}
+				<span class="copy-feedback">Copied!</span>
+			{:else}
+				<CopyIcon />
+			{/if}
+			<code>/plugin install {item.slug}@agent-accords</code>
+		</button>
 	{/if}
 {/each}

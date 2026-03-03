@@ -1,4 +1,5 @@
 import type { Component } from 'svelte';
+import { SKILL_README } from './skill-readme';
 
 interface MdMetadata {
 	name?: string;
@@ -251,6 +252,8 @@ export async function getSkillBundle(
 			content: processForPublishing(refRaw, `/${slug}/${refSlug}`)
 		});
 	}
+
+	files.push({ path: `${slug}/README.md`, content: SKILL_README });
 
 	return files;
 }
