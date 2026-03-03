@@ -200,11 +200,19 @@ export async function getReference(
 	};
 }
 
-function stripPresentationFrontmatter(raw: string): string {
+const SITE_ORIGIN = 'https://accord.exchange';
+
+function processForPublishing(raw: string, route: string): string {
 	const fmMatch = raw.match(/^---\n([\s\S]*?)\n---/);
 	if (!fmMatch) return raw;
 
-	const frontmatter = fmMatch[1].replace(/^presentation:.*(?:\n[ \t]+.*)*/m, '').trim();
+	let frontmatter = fmMatch[1];
+	// Strip presentation (site-only concern)
+	frontmatter = frontmatter.replace(/^presentation:.*(?:\n[ \t]+.*)*/m, '');
+	// Inject url derived from route
+	frontmatter = `url: ${SITE_ORIGIN}${route}\n${frontmatter}`;
+	frontmatter = frontmatter.trim();
+
 	const body = raw.slice(fmMatch[0].length);
 	return `---\n${frontmatter}\n---${body}`;
 }
@@ -217,5 +225,22 @@ export async function getRawSkill(slug: string): Promise<string | undefined> {
 	if (!resolver) return undefined;
 
 	const raw = await resolver();
-	return stripPresentationFrontmatter(raw);
+	return processForPublishing(raw, `/${slug}`);
+}
+
+export async function getRawReference(
+	skill: string,
+	refSlug: string
+): Promise<string | undefined> {
+	const entry = index.get(skill);
+	if (!entry) return undefined;
+
+	const refPath = entry.refPaths.get(refSlug);
+	if (!refPath) return undefined;
+
+	const resolver = rawModules[refPath];
+	if (!resolver) return undefined;
+
+	const raw = await resolver();
+	return processForPublishing(raw, `/${skill}/${refSlug}`);
 }

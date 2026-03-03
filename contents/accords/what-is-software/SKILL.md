@@ -9,9 +9,7 @@ presentation:
     - creating-a-strong-first-draft
 ---
 
-This is an *accord*: an orientation document that gives humans and LLM agents common language and premises for achieving goals together.
-
-Software has saturated the world around us for more than fifty years. But like a fish doesn't know it's in water, we don't always have the mechanics of software close at hand.
+This is an *accord*: an orientation document that gives humans and LLM agents common language and expectations for achieving goals together. Accords are packaged as Agent Skills for agents, and quick-reference HTML guides for humans.
 
 This accord covers three domains essential to building software.
 

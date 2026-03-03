@@ -1,11 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Saira:ital,wght@0,100..900;1,100..900&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap');
+
 :root {
 	--content-width: 70ch;
 	--spacing-page: 1rem;
 	--spacing-block: 1.5rem;
 	--color-bg-start: #2c5aa0;
 	--color-bg-end: #0a1628;
-	--color-surface: #fff;
-	--color-text: #1a1a2e;
+	--color-surface: #faf9f7;
+	--color-text: #2d2d2d;
 	--color-text-light: #ffffffdd;
 	--radius: 0.5rem;
 	--font-size-nav: 1.2rem;
@@ -16,19 +18,65 @@ body {
 	min-height: 100vh;
 	background: linear-gradient(to bottom, var(--color-bg-start), var(--color-bg-end));
 	color: var(--color-text-light);
-	font-family: system-ui, sans-serif;
+	font-family: 'Source Serif 4', serif;
+	font-size: 1.1rem;
+	line-height: 1.6;
 }
 
 .card {
 	background: var(--color-surface);
 	color: var(--color-text);
 	border-radius: var(--radius);
-	padding: var(--spacing-block);
+	padding: 2rem 2.5rem;
 	margin-block-end: var(--spacing-block);
 }
 
 .card > :first-child {
 	margin-block-start: 0;
+}
+
+.card > :last-child {
+	margin-block-end: 0;
+}
+
+.card p {
+	margin-block: 1em;
+}
+
+.card li {
+	line-height: 1.4;
+	margin-block-end: 0.5rem;
+}
+
+.card a {
+	color: var(--color-bg-start);
+	text-decoration-color: color-mix(in srgb, var(--color-bg-start) 40%, transparent);
+	text-underline-offset: 0.15em;
+	transition: text-decoration-color 0.2s;
+}
+
+.card a:hover {
+	text-decoration-color: var(--color-bg-start);
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: 'Saira', sans-serif;
+	font-weight: 400;
+	margin-block-end: 0.2rem;
+}
+
+.card h2, .card h3, .card h4 {
+	margin-block-start: 2rem;
+}
+
+h1 + *, h2 + *, h3 + *, h4 + *, h5 + *, h6 + * {
+	margin-block-start: 0;
+}
+
+@media (max-width: 640px) {
+	.card {
+		padding: 1.5rem 1.25rem;
+	}
 }
 
 main > h1 {
@@ -39,11 +87,13 @@ a.nav-link {
 	display: block;
 	text-decoration: none;
 	color: var(--color-text);
+	font-family: 'Saira', sans-serif;
 	font-size: var(--font-size-nav);
-	font-weight: 600;
+	font-weight: 400;
 }
 
 a.nav-link p {
+	font-family: 'Source Serif 4', serif;
 	font-weight: normal;
 	font-size: 1rem;
 }
