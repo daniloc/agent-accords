@@ -1,16 +1,41 @@
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Saira:ital,wght@0,100..900;1,100..900&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap');
 
 :root {
+	/* layout */
 	--content-width: 70ch;
 	--spacing-page: 1rem;
 	--spacing-block: 1.5rem;
+	--radius: 0.5rem;
+
+	/* fonts */
+	--font-body: 'Source Serif 4', serif;
+	--font-heading: 'Saira', sans-serif;
+	--font-mono: 'IBM Plex Mono', monospace;
+	--font-size-base: 1.1rem;
+	--font-size-nav: 1.2rem;
+	--font-size-small: 0.85rem;
+
+	/* colors — light */
 	--color-bg-start: #2c5aa0;
 	--color-bg-end: #0a1628;
 	--color-surface: #faf9f7;
 	--color-text: #2d2d2d;
 	--color-text-light: #ffffffdd;
-	--radius: 0.5rem;
-	--font-size-nav: 1.2rem;
+	--color-link: #2c5aa0;
+	--color-code: #9b2d6b;
+	--color-code-bg: #f3edf0;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--color-bg-start: #1e3a6e;
+		--color-bg-end: #0a1020;
+		--color-surface: #1c1c2e;
+		--color-text: #d8d8e0;
+		--color-link: #6ea8e6;
+		--color-code: #d48abf;
+		--color-code-bg: #2a2038;
+	}
 }
 
 body {
@@ -18,8 +43,8 @@ body {
 	min-height: 100vh;
 	background: linear-gradient(to bottom, var(--color-bg-start), var(--color-bg-end));
 	color: var(--color-text-light);
-	font-family: 'Source Serif 4', serif;
-	font-size: 1.1rem;
+	font-family: var(--font-body);
+	font-size: var(--font-size-base);
 	line-height: 1.6;
 }
 
@@ -49,31 +74,31 @@ body {
 }
 
 .card a {
-	color: var(--color-bg-start);
-	text-decoration-color: color-mix(in srgb, var(--color-bg-start) 40%, transparent);
+	color: var(--color-link);
+	text-decoration-color: color-mix(in srgb, var(--color-link) 40%, transparent);
 	text-underline-offset: 0.15em;
 	transition: text-decoration-color 0.2s;
 }
 
 .card a:hover {
-	text-decoration-color: var(--color-bg-start);
+	text-decoration-color: var(--color-link);
 }
 
 code {
-	font-family: 'IBM Plex Mono', monospace;
+	font-family: var(--font-mono);
 	font-size: 0.9em;
-	color: #9b2d6b;
-	background: #f3edf0;
+	color: var(--color-code);
+	background: var(--color-code-bg);
 	padding: 0.1em 0.3em;
 	border-radius: 0.25em;
 }
 
 pre code {
-	font-size: 0.85em;
+	font-size: var(--font-size-small);
 }
 
 h1, h2, h3, h4, h5, h6 {
-	font-family: 'Saira', sans-serif;
+	font-family: var(--font-heading);
 	font-weight: 400;
 	margin-block-end: 0.2rem;
 }
@@ -100,13 +125,13 @@ a.nav-link {
 	display: block;
 	text-decoration: none;
 	color: var(--color-text);
-	font-family: 'Saira', sans-serif;
+	font-family: var(--font-heading);
 	font-size: var(--font-size-nav);
 	font-weight: 500;
 }
 
 a.nav-link p {
-	font-family: 'Source Serif 4', serif;
+	font-family: var(--font-body);
 	font-weight: normal;
 	font-size: 1rem;
 	margin-block-start: 0.2rem;
@@ -117,7 +142,7 @@ a.nav-link.next {
 }
 
 .install-hint {
-	font-family: 'Saira', sans-serif;
+	font-family: var(--font-heading);
 	font-size: 0.95rem;
 	color: var(--color-text-light);
 	opacity: 0.8;
@@ -138,7 +163,7 @@ a.nav-link.next {
 	color: var(--color-text-light);
 	background: none;
 	padding: 0;
-	font-size: 0.85rem;
+	font-size: var(--font-size-small);
 }
 
 .copy-command svg {
@@ -146,7 +171,7 @@ a.nav-link.next {
 }
 
 .copy-feedback {
-	font-family: 'Saira', sans-serif;
+	font-family: var(--font-heading);
 	font-size: 0.75rem;
 	color: var(--color-text-light);
 	opacity: 0.5;
@@ -157,8 +182,8 @@ a.nav-link.next {
 	align-items: center;
 	justify-content: flex-end;
 	gap: 0.3rem;
-	font-family: 'Saira', sans-serif;
-	font-size: 0.85rem;
+	font-family: var(--font-heading);
+	font-size: var(--font-size-small);
 	color: var(--color-text-light);
 	opacity: 0.7;
 	text-decoration: none;

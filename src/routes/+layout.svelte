@@ -34,6 +34,6 @@
 	header a {
 		color: var(--color-text-light);
 		text-decoration: none;
-		font-family: 'Saira', sans-serif;
+		font-family: var(--font-heading);
 	}
 </style>
