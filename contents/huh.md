@@ -5,8 +5,8 @@ description: "These are accords: guidance for humans and agents. They provide pr
 
 What you want, and what an LLM agent thinks you want, can be very different.
 
-An LLM agent can meanwhile let you achieve all new things. But how do you know if they're the right things?
+An LLM agent can meanwhile let you achieve all new things. But how do you know they're the right things?
 
-Accords represent the missing *judgment* layer in human-machine collaboration. They represent a shared truth of vocabulary and priorities that allow both components in the system to act with a shared orientation, instead of drifting apart.
+Accords represent the missing *judgment* layer in human-machine collaboration. They provide a shared truth of vocabulary and priorities that allow both people and agents to act with a shared orientation, instead of drifting apart.
 
 This is a project of [Danilo Campos](https://danilocampos.com). Drop me a line: [mail@danilocampos.com](mailto:mail@danilocampos.com)

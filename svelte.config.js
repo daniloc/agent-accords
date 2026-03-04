@@ -18,7 +18,11 @@ const fixMetadataCollision = {
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
-	kit: { adapter: adapter() },
+	kit: {
+		adapter: adapter(),
+		// Required for PostHog session replay to work correctly with SSR
+		paths: { relative: false }
+	},
 	preprocess: [
 		mdsvex({ extensions: ['.md'], rehypePlugins: [rehypeRewriteLinks] }),
 		fixMetadataCollision
