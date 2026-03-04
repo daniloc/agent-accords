@@ -46,6 +46,9 @@ body {
 	font-family: var(--font-body);
 	font-size: var(--font-size-base);
 	line-height: 1.6;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	text-rendering: optimizeLegibility;
 }
 
 .card {
@@ -114,14 +117,22 @@ h1, h2, h3, h4, h5, h6 {
 @media (max-width: 640px) {
 	.card {
 		padding: 1.5rem 1.25rem;
+		border-radius: 0;
+		margin-inline: calc(-1 * var(--spacing-page));
 	}
+
+	.download-link,
+	.download-link.copy-command {
+		justify-content: flex-start;
+	}
+
 }
 
 main > h1 {
 	color: var(--color-text-light);
 }
 
-a.nav-link {
+.nav-link {
 	display: block;
 	text-decoration: none;
 	color: var(--color-text);
@@ -130,7 +141,7 @@ a.nav-link {
 	font-weight: 500;
 }
 
-a.nav-link p {
+.nav-link p {
 	font-family: var(--font-body);
 	font-weight: normal;
 	font-size: 1rem;
@@ -139,6 +150,19 @@ a.nav-link p {
 
 a.nav-link.next {
 	text-align: right;
+}
+
+.coming-soon {
+	opacity: 0.9;
+	cursor: default;
+}
+
+.nav-link .badge {
+	font-variant: all-small-caps;
+	font-family: var(--font-heading);
+	font-size: 0.9em;
+	letter-spacing: 0.05em;
+	opacity: 0.7;
 }
 
 .install-hint {
@@ -157,6 +181,7 @@ a.nav-link.next {
 	border: none;
 	padding: 0;
 	cursor: pointer;
+	max-width: 100%;
 }
 
 .copy-command code {
@@ -164,10 +189,15 @@ a.nav-link.next {
 	background: none;
 	padding: 0;
 	font-size: var(--font-size-small);
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	min-width: 0;
 }
 
 .copy-command svg {
 	color: var(--color-text-light);
+	flex-shrink: 0;
 }
 
 .copy-feedback {

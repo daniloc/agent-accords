@@ -22,6 +22,7 @@ export interface ContentItem {
 	title: string;
 	description: string;
 	type: 'standalone' | 'skill';
+	comingSoon: boolean;
 	references: { slug: string; title: string }[];
 }
 
@@ -138,6 +139,7 @@ export async function getAllItems(): Promise<ContentItem[]> {
 			title: mod.metadata?.title ?? mod.metadata?.name ?? slug,
 			description: mod.metadata?.description ?? '',
 			type: isSkillItem ? 'skill' : 'standalone',
+			comingSoon: !!(mod.metadata as Record<string, unknown>)?.['coming-soon'],
 			references: await buildReferences(entry.refPaths, mod.metadata?.presentation?.order)
 		});
 	}
@@ -158,6 +160,7 @@ export async function getItem(slug: string): Promise<ResolvedItem | undefined> {
 		title: mod.metadata?.title ?? mod.metadata?.name ?? slug,
 		description: mod.metadata?.description ?? '',
 		type: isSkillItem ? 'skill' : 'standalone',
+		comingSoon: !!(mod.metadata as Record<string, unknown>)?.['coming-soon'],
 		references: await buildReferences(entry.refPaths, mod.metadata?.presentation?.order),
 		component: mod.default
 	};

@@ -4,20 +4,28 @@
 
 	let { data } = $props();
 	let Content = $derived(data.component);
-	let copied = $state(false);
+	let copiedId = $state('');
 
-	async function copy() {
-		await navigator.clipboard.writeText(`/plugin install ${data.slug}@agent-accords`);
-		copied = true;
-		setTimeout(() => (copied = false), 2000);
+	async function copy(text: string, id: string) {
+		await navigator.clipboard.writeText(text);
+		copiedId = id;
+		setTimeout(() => (copiedId = ''), 2000);
 	}
 </script>
 
 <h1>{data.title}</h1>
 {#if data.type === 'skill'}
 	<a class="download-link detail" href="/{data.slug}/download" data-sveltekit-reload><FolderIcon /> Download in Agent Skill format (.zip)</a>
-	<button class="download-link detail copy-command" onclick={copy}>
-		{#if copied}
+	<button class="download-link detail copy-command" onclick={() => copy('/plugin marketplace add daniloc/agent-accords', 'marketplace')}>
+		{#if copiedId === 'marketplace'}
+			<span class="copy-feedback">Copied!</span>
+		{:else}
+			<CopyIcon />
+		{/if}
+		<code>/plugin marketplace add daniloc/agent-accords</code>
+	</button>
+	<button class="download-link detail copy-command" onclick={() => copy(`/plugin install ${data.slug}@agent-accords`, 'install')}>
+		{#if copiedId === 'install'}
 			<span class="copy-feedback">Copied!</span>
 		{:else}
 			<CopyIcon />

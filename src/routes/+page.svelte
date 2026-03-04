@@ -27,21 +27,31 @@
 </p>
 
 {#each data.items as item}
-	<a class="card nav-link" href="/{item.slug}">
-		<span class="title">{item.title}</span>
-		{#if item.description}
-			<p>{item.description}</p>
-		{/if}
-	</a>
-	{#if item.type === 'skill'}
-		<a class="download-link" href="/{item.slug}/download" data-sveltekit-reload><FolderIcon /> Download in Agent Skill format (.zip)</a>
-		<button class="download-link copy-command" onclick={() => copy(`/plugin install ${item.slug}@agent-accords`, item.slug)}>
-			{#if copiedId === item.slug}
-				<span class="copy-feedback">Copied!</span>
-			{:else}
-				<CopyIcon />
+	{#if item.comingSoon}
+		<div class="card nav-link coming-soon">
+			<span class="title">{item.title}</span>
+			{#if item.description}
+				<p>{item.description}</p>
 			{/if}
-			<code>/plugin install {item.slug}@agent-accords</code>
-		</button>
+			<p class="badge">Coming soon</p>
+		</div>
+	{:else}
+		<a class="card nav-link" href="/{item.slug}">
+			<span class="title">{item.title}</span>
+			{#if item.description}
+				<p>{item.description}</p>
+			{/if}
+		</a>
+		{#if item.type === 'skill'}
+			<a class="download-link" href="/{item.slug}/download" data-sveltekit-reload><FolderIcon /> Download in Agent Skill format (.zip)</a>
+			<button class="download-link copy-command" onclick={() => copy(`/plugin install ${item.slug}@agent-accords`, item.slug)}>
+				{#if copiedId === item.slug}
+					<span class="copy-feedback">Copied!</span>
+				{:else}
+					<CopyIcon />
+				{/if}
+				<code>/plugin install {item.slug}@agent-accords</code>
+			</button>
+		{/if}
 	{/if}
 {/each}
