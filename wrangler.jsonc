@@ -9,5 +9,9 @@
 		"directory": ".svelte-kit/cloudflare"
 	},
 	"workers_dev": true,
-	"preview_urls": true
+	"preview_urls": true,
+	"vars": {
+		"PUBLIC_POSTHOG_KEY": "phc_UNExXdKhlVHaPkvO3h1cw9ynEF3KYxGJpeSh4wnAdbX",
+		"PUBLIC_POSTHOG_HOST": "https://us.i.posthog.com"
+	}
 }
