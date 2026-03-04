@@ -141,6 +141,21 @@ main > h1 {
 	font-weight: 500;
 }
 
+.nav-link.has-chevron {
+	position: relative;
+	padding-right: 2rem;
+}
+
+.nav-link.has-chevron::after {
+	content: '\203A';
+	position: absolute;
+	right: 1.5rem;
+	top: 50%;
+	transform: translateY(-50%);
+	font-size: 1.8rem;
+	opacity: 0.4;
+}
+
 .nav-link p {
 	font-family: var(--font-body);
 	font-weight: normal;

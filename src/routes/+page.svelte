@@ -47,7 +47,7 @@
 			<p class="badge">Coming soon</p>
 		</div>
 	{:else}
-		<a class="card nav-link" href="/{item.slug}">
+		<a class="card nav-link has-chevron" href="/{item.slug}">
 			<span class="title">{item.title}</span>
 			{#if item.description}
 				<p>{item.description}</p>
