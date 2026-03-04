@@ -23,6 +23,7 @@ export interface ContentItem {
 	description: string;
 	type: 'standalone' | 'skill';
 	comingSoon: boolean;
+	sort?: 'last';
 	references: { slug: string; title: string }[];
 }
 
@@ -133,17 +134,20 @@ export async function getAllItems(): Promise<ContentItem[]> {
 		const mod = await modules[entry.path]();
 		const isSkillItem = entry.path.endsWith('/SKILL.md');
 
+		const meta = mod.metadata as Record<string, unknown> | undefined;
 		items.push({
 			slug,
 			name: mod.metadata?.name ?? slug,
 			title: mod.metadata?.title ?? mod.metadata?.name ?? slug,
 			description: mod.metadata?.description ?? '',
 			type: isSkillItem ? 'skill' : 'standalone',
-			comingSoon: !!(mod.metadata as Record<string, unknown>)?.['coming-soon'],
+			comingSoon: !!meta?.['coming-soon'],
+			sort: meta?.sort === 'last' ? 'last' : undefined,
 			references: await buildReferences(entry.refPaths, mod.metadata?.presentation?.order)
 		});
 	}
 
+	items.sort((a, b) => (a.sort === 'last' ? 1 : 0) - (b.sort === 'last' ? 1 : 0));
 	return items;
 }
 
