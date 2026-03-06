@@ -19,9 +19,14 @@
 	{@render children()}
 </main>
 
+<footer>
+	By <a href="https://danilocampos.com">Danilo Campos</a>
+</footer>
+
 <style>
 	header,
-	main {
+	main,
+	footer {
 		max-width: var(--content-width);
 		margin-inline: auto;
 		padding-inline: var(--spacing-page);
@@ -35,5 +40,17 @@
 		color: var(--color-text-light);
 		text-decoration: none;
 		font-family: var(--font-heading);
+	}
+
+	footer {
+		padding-block: var(--spacing-block) 2rem;
+		font-family: var(--font-heading);
+		font-size: var(--font-size-small);
+		color: var(--color-text-light);
+		opacity: 0.6;
+	}
+
+	footer a {
+		color: inherit;
 	}
 </style>
