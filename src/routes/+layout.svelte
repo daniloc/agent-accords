@@ -48,6 +48,7 @@
 		font-size: var(--font-size-small);
 		color: var(--color-text-light);
 		opacity: 0.6;
+		text-align: right;
 	}
 
 	footer a {
