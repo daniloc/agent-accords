@@ -46,6 +46,32 @@
 			{/if}
 			<p class="badge">Coming soon</p>
 		</div>
+	{:else if item.type === 'skill'}
+		<div class="card-group">
+			<a class="card nav-link has-chevron" href="/{item.slug}">
+				<span class="title">{item.title}</span>
+				{#if item.description}
+					<p>{item.description}</p>
+				{/if}
+			</a>
+			<div class="card-actions">
+				<a class="download-link" href="/{item.slug}/download" data-sveltekit-reload
+					><FolderIcon /> Download (.zip)</a
+				>
+				<button
+					class="download-link copy-command"
+					onclick={() =>
+						copy(`/plugin install accords@agent-accords`, item.slug, 'install', item.slug)}
+				>
+					{#if copiedId === item.slug}
+						<span class="copy-feedback">Copied!</span>
+					{:else}
+						<CopyIcon />
+					{/if}
+					<code>/plugin install accords@agent-accords</code>
+				</button>
+			</div>
+		</div>
 	{:else}
 		<a class="card nav-link has-chevron" href="/{item.slug}">
 			<span class="title">{item.title}</span>
@@ -53,22 +79,5 @@
 				<p>{item.description}</p>
 			{/if}
 		</a>
-		{#if item.type === 'skill'}
-			<a class="download-link" href="/{item.slug}/download" data-sveltekit-reload
-				><FolderIcon /> Download in Agent Skill format (.zip)</a
-			>
-			<button
-				class="download-link copy-command"
-				onclick={() =>
-					copy(`/plugin install accords@agent-accords`, item.slug, 'install', item.slug)}
-			>
-				{#if copiedId === item.slug}
-					<span class="copy-feedback">Copied!</span>
-				{:else}
-					<CopyIcon />
-				{/if}
-				<code>/plugin install accords@agent-accords</code>
-			</button>
-		{/if}
 	{/if}
 {/each}
