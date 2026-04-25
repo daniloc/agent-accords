@@ -1,5 +1,5 @@
 {
-	"name": "how-to-build-software",
-	"description": "An accord explaining what software is and how it is made. Covers structuring code, data modeling and state, and creating strong first drafts through prototyping and iteration.",
+	"name": "accords",
+	"description": "A collection of accords — orientation documents that give humans and LLM agents shared language and expectations for building software together.",
 	"version": "1.0.0"
 }

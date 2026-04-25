@@ -60,14 +60,14 @@
 			<button
 				class="download-link copy-command"
 				onclick={() =>
-					copy(`/plugin install ${item.slug}@agent-accords`, item.slug, 'install', item.slug)}
+					copy(`/plugin install accords@agent-accords`, item.slug, 'install', item.slug)}
 			>
 				{#if copiedId === item.slug}
 					<span class="copy-feedback">Copied!</span>
 				{:else}
 					<CopyIcon />
 				{/if}
-				<code>/plugin install {item.slug}@agent-accords</code>
+				<code>/plugin install accords@agent-accords</code>
 			</button>
 		{/if}
 	{/if}
