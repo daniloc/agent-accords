@@ -4,8 +4,7 @@
 		"name": "Agent Accords"
 	},
 	"metadata": {
-		"description": "Shared language and premises for humans and LLM agents building software together.",
-		"pluginRoot": "./contents/accords"
+		"description": "Shared language and premises for humans and LLM agents building software together."
 	},
 	"plugins": [
 		{

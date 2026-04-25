@@ -2,6 +2,7 @@
 name: how-to-build-software
 title: How to build software
 description: An accord for building software with AI assistance. Establishes shared vocabulary and principles for structuring code, structuring data, and managing the strategic risks of going from zero to one. Use when building projects to maintain strong foundations.
+disable-model-invocation: true
 license: CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/)
 metadata:
   author: Danilo Campos
