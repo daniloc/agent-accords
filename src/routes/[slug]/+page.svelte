@@ -36,6 +36,10 @@
 	}
 </script>
 
+<svelte:head>
+	<title>{data.title} · Agent accords</title>
+</svelte:head>
+
 <h1>{data.title}</h1>
 {#if data.type === 'skill'}
 	<a

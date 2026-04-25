@@ -26,6 +26,10 @@
 	}
 </script>
 
+<svelte:head>
+	<title>{data.title} · {data.parentName} · Agent accords</title>
+</svelte:head>
+
 <h1>{data.title}</h1>
 <a
 	class="download-link detail"
