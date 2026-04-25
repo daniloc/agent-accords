@@ -1,9 +1,10 @@
 import posthog from 'posthog-js';
-import { PUBLIC_POSTHOG_KEY } from '$env/static/public';
+import { env } from '$env/dynamic/public';
 import type { HandleClientError } from '@sveltejs/kit';
 
 export async function init() {
-	posthog.init(PUBLIC_POSTHOG_KEY, {
+	if (!env.PUBLIC_POSTHOG_KEY) return;
+	posthog.init(env.PUBLIC_POSTHOG_KEY, {
 		api_host: '/ingest',
 		ui_host: 'https://us.posthog.com',
 		defaults: '2026-01-30',
@@ -12,7 +13,7 @@ export async function init() {
 }
 
 export const handleError: HandleClientError = async ({ error, status, message }) => {
-	posthog.captureException(error);
+	if (env.PUBLIC_POSTHOG_KEY) posthog.captureException(error);
 
 	return {
 		message,
